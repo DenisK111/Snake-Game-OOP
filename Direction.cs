@@ -94,45 +94,83 @@ namespace Snake_Game_OOP
 
             }
 
-           // if (currNode.Value.Value.X == GlobalConstants.rightBorder - 1 && currNode.Value.Value.Y == GlobalConstants.lowerBorder - 1)
+            if (!CheckForBugLocatationAndMove(currNode))
+            {
+                if (currentDirection.Key == ConsoleKey.UpArrow)
+                {
+                    currNode.Value.Value.Y = currNode.Value.Value.Y == GlobalConstants.upperBorder ? GlobalConstants.lowerBorder - 1 : --currNode.Value.Value.Y;
+
+                }
+
+                else if (currentDirection.Key == ConsoleKey.DownArrow)
+                {
+
+                    currNode.Value.Value.Y = currNode.Value.Value.Y == GlobalConstants.lowerBorder - 1 ? GlobalConstants.upperBorder : ++currNode.Value.Value.Y;
+                }
+
+
+                else if (currentDirection.Key == ConsoleKey.LeftArrow)
+                {
+                    currNode.Value.Value.X = currNode.Value.Value.X == GlobalConstants.leftBorder ? GlobalConstants.rightBorder - 1 : --currNode.Value.Value.X;
+                }
+
+                //edge case regarding bug on the lower right border point
+                /* else if (currentDirection.Key == ConsoleKey.RightArrow && currNode.Value.Value.X == GlobalConstants.rightBorder - 2 && currNode.Value.Value.Y == GlobalConstants.lowerBorder - 1)
+                 {
+
+                 }*/
+
+                else if (currentDirection.Key == ConsoleKey.RightArrow)
+                {
+                    currNode.Value.Value.X = currNode.Value.Value.X == GlobalConstants.rightBorder - 1 ? GlobalConstants.leftBorder : ++currNode.Value.Value.X;
+
+                }
+            }
+
+            // if (currNode.Value.Value.X == GlobalConstants.rightBorder - 1 && currNode.Value.Value.Y == GlobalConstants.lowerBorder - 1)
             //{
-           //     Console.Clear();
+            //     Console.Clear();
             //}
 
-            if (currentDirection.Key == ConsoleKey.UpArrow)
-            {
-                currNode.Value.Value.Y = currNode.Value.Value.Y == GlobalConstants.upperBorder ? GlobalConstants.lowerBorder -1 : --currNode.Value.Value.Y;
-              
-            }
-
-            else if (currentDirection.Key == ConsoleKey.DownArrow)
-            {
-                
-                currNode.Value.Value.Y = currNode.Value.Value.Y == GlobalConstants.lowerBorder -1 ? GlobalConstants.upperBorder : ++currNode.Value.Value.Y;
-            }
-
-
-            else if (currentDirection.Key == ConsoleKey.LeftArrow)
-            {
-                currNode.Value.Value.X = currNode.Value.Value.X == GlobalConstants.leftBorder ? GlobalConstants.rightBorder -1 : --currNode.Value.Value.X;              
-            }
-
-            //edge case regarding bug on the lower right border point
-           /* else if (currentDirection.Key == ConsoleKey.RightArrow && currNode.Value.Value.X == GlobalConstants.rightBorder - 2 && currNode.Value.Value.Y == GlobalConstants.lowerBorder - 1)
-            {
-                currNode.Value.Value.X = GlobalConstants.leftBorder;
-            }*/
-
-            else if (currentDirection.Key == ConsoleKey.RightArrow)
-            {
-                currNode.Value.Value.X = currNode.Value.Value.X == GlobalConstants.rightBorder -1 ? GlobalConstants.leftBorder : ++currNode.Value.Value.X;
-
-            }
-
           
+
+                         
 
             
           
+        }
+
+        // windows console is bugged when snake head goes to lower right border, that is why this field is off limits
+        private bool CheckForBugLocatationAndMove (LinkedListNode<LinkedListNode<IDot>> currNode)
+        {
+            
+            if ( currentDirection.Key == ConsoleKey.RightArrow && currNode.Value.Value.X == GlobalConstants.rightBorder - 2 && currNode.Value.Value.Y == GlobalConstants.lowerBorder - 1)
+            {
+                currNode.Value.Value.X = GlobalConstants.leftBorder;
+                return true;
+            }
+
+            else if (currentDirection.Key == ConsoleKey.DownArrow && currNode.Value.Value.X == GlobalConstants.rightBorder - 1 && currNode.Value.Value.Y == GlobalConstants.lowerBorder - 2)
+            {
+                currNode.Value.Value.Y = GlobalConstants.upperBorder;
+                return true;
+            }
+
+            else if (currentDirection.Key == ConsoleKey.LeftArrow && currNode.Value.Value.X == GlobalConstants.leftBorder && currNode.Value.Value.Y == GlobalConstants.lowerBorder - 1)
+            {
+                currNode.Value.Value.X = GlobalConstants.rightBorder-2;
+                return true;
+            }
+
+            else if (currentDirection.Key == ConsoleKey.UpArrow && currNode.Value.Value.X == GlobalConstants.rightBorder-1 && currNode.Value.Value.Y == GlobalConstants.upperBorder)
+            {
+                currNode.Value.Value.Y = GlobalConstants.lowerBorder-2;
+                return true;
+            }
+
+
+
+            return false;
         }
 
 

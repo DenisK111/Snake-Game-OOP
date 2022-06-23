@@ -24,7 +24,7 @@ namespace Snake_Game_OOP
         public static readonly int lowerBorder = consoleHeight;
         public static readonly int leftBorder = 0;
         public static readonly int rightBorder = consoleWidth;
-        public static readonly int initialBodyLength = 20;
+        public static readonly int initialBodyLength = 15;
         public static readonly int delay = 120;
         public static readonly string font = "Lucida Console";
         public static readonly short fontSize = 20;

@@ -32,12 +32,13 @@ namespace Snake_Game_OOP
 
         public void CheckIfFoodLocationIsInAValidPosition(IFood food, Body snake)
         {
-         /*   if (food.X == GlobalConstants.rightBorder -1 && food.Y == GlobalConstants.lowerBorder -1)
-            {
-                food.X = random.Next(GlobalConstants.leftBorder, GlobalConstants.rightBorder);
-                food.Y = random.Next(GlobalConstants.upperBorder, GlobalConstants.lowerBorder);
-                CheckIfFoodLocationIsInAValidPosition(food, snake);
-            }*/
+            // windows console is bugged when snake head goes to lower right border, that is why this field is off limits
+              if (food.X == GlobalConstants.rightBorder -1 && food.Y == GlobalConstants.lowerBorder -1)
+               {
+                   food.X = random.Next(GlobalConstants.leftBorder, GlobalConstants.rightBorder);
+                   food.Y = random.Next(GlobalConstants.upperBorder, GlobalConstants.lowerBorder);
+                   CheckIfFoodLocationIsInAValidPosition(food, snake);
+               }
             foreach (var item in snake.BodyOutput)
             {
                 
