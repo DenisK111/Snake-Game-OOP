@@ -26,6 +26,7 @@ namespace Snake_Game_OOP
             collection.AddSingleton<ISoundPlayer, ConsoleSoundPlayer>();
             collection.AddTransient<Body, Body>();
             collection.AddSingleton(typeof(string),(IServiceProvider provider) => GlobalConstants.soundFilePath);
+            collection.AddSingleton<Highscore, Highscore>();
             var serviceProvider = collection.BuildServiceProvider();
             return serviceProvider;
 

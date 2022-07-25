@@ -21,6 +21,7 @@ namespace Snake_Game_OOP
         private IPauser pauser;
         private Random random = new Random();
 
+
         public GameEngine(Body snake, IRenderer renderer, IProperties properties, IGameEnd gameEnd, ISoundPlayer soundPlayer, IPauser pauser)
         {
             this.snake = snake;
@@ -29,7 +30,6 @@ namespace Snake_Game_OOP
             this.gameEnd = gameEnd;
             this.soundPlayer = soundPlayer;
             this.pauser = pauser;
-
         }
 
         public void Start()
@@ -41,12 +41,12 @@ namespace Snake_Game_OOP
             IFood food = new Food();
             checker.CheckIfFoodLocationIsInAValidPosition(food, snake);
             Direction direction = new Direction();
-          if (GlobalConstants.test == 1)
-         {
-                 //Fix this!
+            if (GlobalConstants.test == 1)
+            {
+                //TODO Fix this!
                 GlobalConstants.test = 2;
-return;
-           }
+                return;
+            }
 
             while (true)
             {

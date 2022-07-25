@@ -11,6 +11,8 @@ namespace Snake_Game_OOP.Contracts
         void Render(Body body);
         void Render(IFood food);
 
+        void Render(Highscore highscore);
+
         void Clear();
     }
 }

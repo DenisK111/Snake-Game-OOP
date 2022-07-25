@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +10,10 @@ namespace Snake_Game_OOP
 {
     public abstract class GlobalConstants
     {
+        public static string username;
         public static int test = 1;
         public static int highScore = 0;
+        public static readonly string highscoreFilePath = "../../../highscore.json";
         public static readonly int consoleHeight = 20;
         public static readonly int consoleWidth = 50;
         public static readonly bool cursorVisible = false;
@@ -41,6 +45,13 @@ namespace Snake_Game_OOP
              ConsoleKey.DownArrow };
         public static readonly int renderDelay = 20;
         public static readonly int gameEndDelay = 150;
+
+        public static readonly JsonSerializerSettings jsonSettings = new JsonSerializerSettings
+        {
+            Formatting = Formatting.Indented,
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+
+        };
 
 
     }

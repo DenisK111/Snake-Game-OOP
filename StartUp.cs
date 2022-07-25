@@ -10,6 +10,18 @@ namespace Snake_Game_OOP
     {
         static void Main(string[] args)
         {
+            while (true)
+            {
+                Console.Write("Choose UserName (Max Length: 12): ");
+                GlobalConstants.username = Console.ReadLine();
+
+                if (GlobalConstants.username.Length <= 12)
+                {
+                    break;
+                }
+                Console.WriteLine("Username is too long");
+            }
+            
             IServiceProvider serviceProvider = new DependencyConfigurator().Configure();
             while (true)
             {
